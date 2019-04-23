@@ -42,7 +42,7 @@
             </Slider>
 
             <TextBlock Text="{Binding Mode=OneWay, Path=BoundThrottleValue}" Grid.Row="1" Grid.Column="1" FontSize="25" TextAlignment="Left"></TextBlock>
-            <Slider x:Name="throttleSlider" Value="{Binding Path=BoundThrottleValue, Mode=OneWayToSource}" Grid.RowSpan="3" Grid.Column="1" Grid.Row="2" AutoToolTipPrecision="0"  TickFrequency="0.05" TickPlacement="TopLeft" Minimum="-1" Maximum="1" BorderThickness="1" Orientation="Vertical">
+            <Slider x:Name="throttleSlider" Value="{Binding Path=BoundThrottleValue, Mode=OneWayToSource}" Grid.RowSpan="3" Grid.Column="1" Grid.Row="2" TickFrequency="0.05" TickPlacement="TopLeft" Minimum="-1" Maximum="1" BorderThickness="1" Orientation="Vertical">
             </Slider>
 
             <TextBlock Text="&#x2190;  throttle  &#x2192;" Grid.RowSpan="3" Grid.Column="0" Grid.Row="2" FontSize="25" TextAlignment="Center">

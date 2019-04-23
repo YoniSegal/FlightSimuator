@@ -24,7 +24,7 @@ namespace FlightSimulator.Views
     /// </summary>
     public partial class MyJoystick : INotifyPropertyChanged
     {
-        //private JoystickHandler joystick;
+        private JoystickHandler joystick;
         public MyJoystick()
         {
             DataContext = this;
@@ -74,19 +74,7 @@ namespace FlightSimulator.Views
             }
         }
 
-        private int boundElevatorValue;
-        public int BoundElevatorValue
-        {
-            get { return boundElevatorValue; }
-            set
-            {
-                if (boundElevatorValue != value)
-                {
-                    boundElevatorValue = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
+ 
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)

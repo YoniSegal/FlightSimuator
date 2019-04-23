@@ -27,8 +27,8 @@ namespace FlightSimulator.Views
         }
         private void Setting_Click(object sender, RoutedEventArgs e)
         {
-            //Settings set = new Settings();
-            //set.Show();
+            Settings set = new Settings();
+            set.Show();
         }
     }
 }
