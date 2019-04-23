@@ -1,4 +1,5 @@
-﻿using System;
+﻿//using FlightSimulator.Views.windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,19 +11,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-
-namespace FlightSimulator
+using FlightSimulator.Views;
+namespace FlightSimulator.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MyFlightBoard.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MyFlightBoard : UserControl
     {
-        public MainWindow()
+        public MyFlightBoard()
         {
             InitializeComponent();
-            Console.ReadLine();
+        }
+        private void Setting_Click(object sender, RoutedEventArgs e)
+        {
+            //Settings set = new Settings();
+            //set.Show();
         }
     }
 }

@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace FlightSimulator.Views
 {
     /// <summary>
@@ -24,7 +25,7 @@ namespace FlightSimulator.Views
     {
         /// <summary>Current Aileron</summary>
         public static readonly DependencyProperty AileronProperty =
-            DependencyProperty.Register("Aileron", typeof(double), typeof(Joystick),null);
+            DependencyProperty.Register("Aileron", typeof(double), typeof(Joystick), null);
 
         /// <summary>Current Elevator</summary>
         public static readonly DependencyProperty ElevatorProperty =
@@ -145,7 +146,30 @@ namespace FlightSimulator.Views
 
             double distance = Math.Round(Math.Sqrt(deltaPos.X * deltaPos.X + deltaPos.Y * deltaPos.Y));
             if (distance >= canvasWidth / 2 || distance >= canvasHeight / 2)
+            {
                 return;
+            }
+
+            Aileron = 2 * deltaPos.X;
+            if (Aileron >= 1)
+            {
+                Aileron = 1;
+            }
+            else
+            {
+                Aileron = -1;
+            }
+
+            Elevator = 2 * deltaPos.Y;
+            if (Elevator >= 1)
+            {
+                Elevator = 1;
+            }
+            else
+            {
+                Elevator = -1;
+            }
+
             Aileron = -deltaPos.Y;
             Elevator = deltaPos.X;
 
@@ -156,7 +180,8 @@ namespace FlightSimulator.Views
                 (!(Math.Abs(_prevAileron - Aileron) > AileronStep) && !(Math.Abs(_prevElevator - Elevator) > ElevatorStep)))
                 return;
 
-            Moved?.Invoke(this, new VirtualJoystickEventArgs { Aileron = Aileron, Elevator = Elevator });
+            // Moved?.Invoke(this, new VirtualJoystickEventArgs { Aileron = Aileron, Elevator = Elevator });
+            VirtualJoystickEventArgs vJoystick = VirtualJoystickEventArgs.getInstance();
             _prevAileron = Aileron;
             _prevElevator = Elevator;
 
