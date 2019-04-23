@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FlightSimulator.Model;
-
+using FlightSimuator.Model;
 
 namespace FlightSimulator.ViewModels
 {
@@ -22,12 +22,12 @@ namespace FlightSimulator.ViewModels
             get;
         }
 
-        /*
+        
         public void connect()
         {
             ConnectModel c = new ConnectModel();
             c.connect();
         }
-        */
+        
     }
 }

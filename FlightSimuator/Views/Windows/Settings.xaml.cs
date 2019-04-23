@@ -34,9 +34,10 @@ namespace FlightSimulator.Views
             this.Close();
         }
 
-        private void ClickCommand(object sender, RoutedEventArgs e)
+        private void OkCommand(object sender, RoutedEventArgs e)
         {
             sh.save();
+            this.Close();
         }
     }
 }

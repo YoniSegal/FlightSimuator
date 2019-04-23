@@ -33,7 +33,7 @@
         <TextBlock Grid.Row="2">Flight Command Port:</TextBlock>
         <TextBox x:Name="commandPort" Grid.Row="2" Grid.Column="2" Text="{Binding Path=FlightCommandPort}"></TextBox>
         <WrapPanel Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="ok" Command="{Binding ClickCommand}" Margin="5"
+            <Button x:Name="ok" Click="OkCommand" Margin="5"
         Padding="5">Ok</Button>
             <Button x:Name="cancle" Click="CancelCommand" Command="{Binding CancelCommand}" Grid.Row="3" Grid.ColumnSpan="2" Margin="5"
         Padding="5" >Cancel</Button>

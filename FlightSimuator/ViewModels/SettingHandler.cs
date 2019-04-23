@@ -1,25 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls;
+using FlightSimulator.Model;
 
 namespace FlightSimulator.ViewModels
 {
-    public partial class UserControl1 : UserControl
+    class SettingHandler
     {
-        public UserControl1()
+        ApplicationSettingsModel asm;
+        private string flightServerIP;
+        private string flightInfoPort;
+        private string flightCommandPort;
+        private Server server;
+        private Client client;
+        public string FlightServerIP
         {
-            InitializeComponent();
+            set
+            {
+                server.ServerIp = value;
+            }
+        }
+        public string FlightInfoPort {
+            set
+            {
+                server.ServerPort = int.Parse(value);
+            }
+        }
+        public string FlightCommandPort {
+            set {
+                client.ClientPort = int.Parse(value);
+            }
+        }
+        public SettingHandler()
+        {
+            server = Server.getInstance();
+            client = Client.getInstance();
+            asm = new ApplicationSettingsModel();
         }
 
-        private void InitializeComponent()
+        public void save()
         {
-            throw new NotImplementedException();
+            asm.SaveSettings();
+        }
+        public void load()
+        {
+            asm.ReloadSettings();
         }
     }
 }
