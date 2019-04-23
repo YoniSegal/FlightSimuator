@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FlightSimulator.Model;
+using FlightSimulator.ViewModels;
 using FlightSimulator.Views;
 namespace FlightSimulator.Views
 {
@@ -29,6 +31,12 @@ namespace FlightSimulator.Views
         {
             Settings set = new Settings();
             set.Show();
+        }
+
+        private void Connect_Click(object sender, RoutedEventArgs e)
+        {
+            FlightBoardViewModel flightBoardViewModel = new FlightBoardViewModel();
+            flightBoardViewModel.connect();
         }
     }
 }

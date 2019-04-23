@@ -81,14 +81,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\ApplicationSettingsModel.cs" />
+    <Compile Include="Model\Client.cs" />
     <Compile Include="Model\CommandHandler.cs" />
+    <Compile Include="Model\ConnectModel.cs" />
+    <Compile Include="Model\Data.cs" />
     <Compile Include="Model\EventArgs\VirtualJoystickEventArgs.cs" />
     <Compile Include="Model\Interface\ISettingsModel.cs" />
+    <Compile Include="Model\Server.cs" />
     <Compile Include="ViewModels\BaseNotify.cs" />
     <Compile Include="ViewModels\FlightBoardViewModel.cs" />
     <Compile Include="ViewModels\JoystickHandler.cs" />
     <Compile Include="ViewModels\SettingHandler.cs" />
-    <Compile Include="ViewModels\SettingHandler.Designer.cs" />
     <Compile Include="ViewModels\Windows\SettingsWindowViewModel.cs" />
     <Compile Include="Views\AutoPilot.xaml.cs">
       <DependentUpon>AutoPilot.xaml</DependentUpon>
