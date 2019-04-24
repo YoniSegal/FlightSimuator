@@ -22,7 +22,8 @@ namespace FlightSimulator.Model
         {
             client.Connect_client();
             server.connect_server();
-            server.Read();
+            StartRead();
+            //server.Read();
         }
         private double lat;
         public double Lat

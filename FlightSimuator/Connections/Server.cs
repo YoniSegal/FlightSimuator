@@ -64,9 +64,7 @@ namespace FlightSimulator.Model
             listener = new TcpListener(ep);
             listener.Start();
             Console.WriteLine("waiting for client connection...");
-            client = listener.AcceptTcpClient();
             Console.WriteLine("info channel: client connected");
-            isConnected = true;
             Thread thread = new Thread(() => ServisClient());
             thread.Start();
 
