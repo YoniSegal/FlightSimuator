@@ -21,7 +21,7 @@ namespace FlightSimulator.Model
         public void connect()
         {
             client.Connect_client();
-            server.connect_server();
+            //server.connect_server();
         }
     }
 }

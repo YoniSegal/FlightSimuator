@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
+
 namespace FlightSimulator.Model
 {
     class Client
     {
         static Client instance = null;
         private string clientIp;
+        public bool isConnected { get; set; } = false; // is the clinet connected?
 
         public string ClientIp { get; set; }
         public int ClientPort { get; set; }
@@ -27,13 +30,16 @@ namespace FlightSimulator.Model
         }
         public void Connect_client()
         {
-            new Task(() =>
+
+            Int32 port = ApplicationSettingsModel.Instance.FlightCommandPort;
+            string server = ApplicationSettingsModel.Instance.FlightServerIP;
+            TcpClient tcpClient = new TcpClient(server, port);
+            Console.WriteLine("Comman channel: you are connected");
+            isConnected = true;
+            
+            new Thread(() =>
             {
-                IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 5400);
-                TcpClient client = new TcpClient();
-                client.Connect(ep);
-                Console.WriteLine("You are connected");
-                using (NetworkStream stream = client.GetStream())
+                using (NetworkStream stream = tcpClient.GetStream())
                 using (BinaryReader reader = new BinaryReader(stream))
                 using (BinaryWriter writer = new BinaryWriter(stream))
                 {
@@ -46,8 +52,9 @@ namespace FlightSimulator.Model
                     int result = reader.ReadInt32();
                     Console.WriteLine("Result = {0}", result);
                 }
-                client.Close();
+                tcpClient.Close();
             }).Start();
+            
         }
     }
 }

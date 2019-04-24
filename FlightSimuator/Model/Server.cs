@@ -6,16 +6,19 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
-
+using System.Threading;
+using FlightSimuator.Model;
 
 namespace FlightSimulator.Model
 {
     class Server
     {
         static Server instance = null;
-        private string serverIp;
+        private string serverIp = "127.0.0.1";
         private int serverPort;
         TcpClient client;
+        ClientHandler ch;
+        private bool isConnected = false;
         public int ServerPort
         {
             get { return serverPort; }
@@ -44,16 +47,44 @@ namespace FlightSimulator.Model
         public void connect_server()
         {
 
+            Int32 port = ApplicationSettingsModel.Instance.FlightInfoPort;
+
+
+
+/*
+ *  
+ * 
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse(serverIp), serverPort);
             TcpListener listener = new TcpListener(ep);
-            listener.Start();
             Console.WriteLine("Waiting for client connections...");
-            client = listener.AcceptTcpClient();
-            Console.WriteLine("Client connected");
+            listener.Start();
+
+            TcpClient client = listener.AcceptTcpClient();
+
+            Thread thread = new Thread(() => {
+                while (true)
+                {
+                    try
+                    {
+                        Console.WriteLine("Client connected");
+                        ch.HandleClient(client);
+                    }
+                    catch (SocketException)
+                    {
+                        break;
+                    }
+                }
+                Console.WriteLine("Server stopped");
+            });
+            thread.Start();
+        
+
+            //client = listener.AcceptTcpClient();
+            //Console.WriteLine("Client connected");
             Task t = new Task(ServisClient);
             t.Start();
 
-            listener.Stop();
+            listener.Stop();*/
         }
 
         void ServisClient()
