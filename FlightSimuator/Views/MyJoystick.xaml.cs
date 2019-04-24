@@ -29,52 +29,9 @@ namespace FlightSimulator.Views
         {
             DataContext = this;
             InitializeComponent();
+            joystick = new JoystickHandler();
         }
 
-        private int boundThrottleValue;
-        public int BoundThrottleValue
-        {
-            get { return boundThrottleValue; }
-            set
-            {
-                if (boundThrottleValue != value)
-                {
-                    boundThrottleValue = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-
-        private int boundRudderValue;
-        public int BoundRudderValue
-        {
-            get { return boundRudderValue; }
-            set
-            {
-                if (boundRudderValue != value)
-                {
-                    boundRudderValue = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private int boundAileronValue;
-        public int BoundAileronValue
-        {
-            get { return boundAileronValue; }
-            set
-            {
-                if (boundAileronValue != value)
-                {
-                    boundAileronValue = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
- 
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)

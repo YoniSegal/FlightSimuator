@@ -11,8 +11,10 @@ namespace FlightSimuator.Model
     {
         // send commands to the simulator
         public void SendCommands(string input)
-        {            
-            if (Client.getInstance().isConnected)
+        {
+            Client client = Client.getInstance();
+            client.Connect_client();
+            if (client.isConnected)
             {
                 new Task(delegate ()
                 {

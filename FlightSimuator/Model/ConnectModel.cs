@@ -20,8 +20,7 @@ namespace FlightSimulator.Model
         }
         public void connect()
         {
-            try { client.Connect_client(); }
-            catch { Exception e; }
+            //client.Connect_client();
             server.connect_server();
             StartRead();
             //server.Read();

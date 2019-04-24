@@ -12,10 +12,17 @@ namespace FlightSimulator.Model.EventArgs
         public double Elevator { get; set; }
         public double Rudder { get; internal set; }
         public double Throttle { get; internal set; }
+        static VirtualJoystickEventArgs instance = null;
+
 
         internal static VirtualJoystickEventArgs getInstance()
         {
-            throw new NotImplementedException();
+            if (instance == null)
+            {
+                instance = new VirtualJoystickEventArgs();
+                return instance;
+            }
+            else return instance;
         }
     }
 }

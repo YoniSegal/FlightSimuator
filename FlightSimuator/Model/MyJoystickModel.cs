@@ -12,6 +12,8 @@ namespace FlightSimuator.Model
     {
         public void Send(string command)
         {
+            Client client = Client.getInstance();
+            client.Connect_client();
             if (Client.getInstance().isConnected)
             {
                 new Thread(delegate ()
