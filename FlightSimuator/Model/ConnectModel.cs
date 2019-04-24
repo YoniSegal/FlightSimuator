@@ -21,7 +21,43 @@ namespace FlightSimulator.Model
         public void connect()
         {
             client.Connect_client();
-            //server.connect_server();
+            server.connect_server();
+            server.Read();
+        }
+        private double lat;
+        public double Lat
+        {
+            get { return lat; }
+
+            set
+            {
+                lat = value;
+            }
+        }
+        private double lon;
+        public double Lon
+        {
+            get { return lon; }
+
+            set
+            {
+                lon = value;
+            }
+        }
+        // read input in a new thread, notify view model about the new data
+        void StartRead()
+        {
+            new Task(delegate ()
+            {
+                while (server.isConnected)
+                {
+                    string[] args = server.Read();
+                    Lon = Convert.ToDouble(args[0]);
+                    Lat = Convert.ToDouble(args[1]);
+                    Console.Write("Lon: " + Lon + "\t");
+                    Console.WriteLine("Lat: " + Lat);
+                }
+            }).Start();
         }
     }
 }

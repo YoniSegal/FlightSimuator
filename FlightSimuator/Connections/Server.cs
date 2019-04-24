@@ -16,9 +16,14 @@ namespace FlightSimulator.Model
         static Server instance = null;
         private string serverIp = "127.0.0.1";
         private int serverPort;
+        Int32 port;
+        IPAddress ip;
         TcpClient client;
         ClientHandler ch;
-        private bool isConnected = false;
+        public bool isConnected = false;
+        private BinaryReader reader;
+        private TcpListener listener;
+
         public int ServerPort
         {
             get { return serverPort; }
@@ -53,10 +58,10 @@ namespace FlightSimulator.Model
         public void connect_server()
         {
 
-            Int32 port = ApplicationSettingsModel.Instance.FlightInfoPort;
-            IPAddress ip = IPAddress.Parse(ApplicationSettingsModel.Instance.FlightServerIP);
+            port = ApplicationSettingsModel.Instance.FlightInfoPort;
+            ip = IPAddress.Parse(ApplicationSettingsModel.Instance.FlightServerIP);
             IPEndPoint ep = new IPEndPoint(ip, port);
-            TcpListener listener = new TcpListener(ep);
+            listener = new TcpListener(ep);
             listener.Start();
             Console.WriteLine("waiting for client connection...");
             client = listener.AcceptTcpClient();
@@ -99,6 +104,23 @@ namespace FlightSimulator.Model
             t.Start();
 
             listener.Stop();*/
+
+        }
+
+        public string[] Read()
+        {
+            if (!isConnected)
+            {
+                isConnected = true;
+                client = listener.AcceptTcpClient();
+                reader = new BinaryReader(client.GetStream());
+            }
+            string input = ""; // input will be stored here
+            char s;
+            while ((s = reader.ReadChar()) != '\n') input += s; // read untill \n
+            string[] param = input.Split(','); // split by comma
+            string[] ret = { param[0], param[1] }; // lon nad lat only
+            return ret;
 
         }
 

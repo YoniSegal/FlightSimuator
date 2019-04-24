@@ -29,12 +29,12 @@ namespace FlightSimulator.ViewModels
         public ICommand ConnectsCommand { get { return connectsCommand ?? (connectsCommand = new CommandHandler(() => connect())); } }
         public double Lon
         {
-            get;
+            get; set;
         }
 
         public double Lat
         {
-            get;
+            get; set;
         }
 
         
