@@ -44,12 +44,26 @@ namespace FlightSimulator.Model
             }
             else return instance;
         }
+
+        public void listenAndRead()
+        {
+
+        }
+
         public void connect_server()
         {
 
             Int32 port = ApplicationSettingsModel.Instance.FlightInfoPort;
-
-
+            IPAddress ip = IPAddress.Parse(ApplicationSettingsModel.Instance.FlightServerIP);
+            IPEndPoint ep = new IPEndPoint(ip, port);
+            TcpListener listener = new TcpListener(ep);
+            listener.Start();
+            Console.WriteLine("waiting for client connection...");
+            client = listener.AcceptTcpClient();
+            Console.WriteLine("info channel: client connected");
+            isConnected = true;
+            Thread thread = new Thread(() => ServisClient());
+            thread.Start();
 
 /*
  *  

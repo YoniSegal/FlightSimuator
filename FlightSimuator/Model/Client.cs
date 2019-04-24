@@ -34,7 +34,7 @@ namespace FlightSimulator.Model
             Int32 port = ApplicationSettingsModel.Instance.FlightCommandPort;
             string server = ApplicationSettingsModel.Instance.FlightServerIP;
             TcpClient tcpClient = new TcpClient(server, port);
-            Console.WriteLine("Comman channel: you are connected");
+            Console.WriteLine("Command channel: you are connected");
             isConnected = true;
             
             new Thread(() =>
@@ -44,13 +44,13 @@ namespace FlightSimulator.Model
                 using (BinaryWriter writer = new BinaryWriter(stream))
                 {
                     // Send data to server
-                    Console.Write("Please enter a number: ");
+                    Console.WriteLine("Please enter a number: ");
                     int num = 5;
                     //int.Parse(Console.ReadLine());
                     writer.Write(num);
                     // Get result from server
-                    int result = reader.ReadInt32();
-                    Console.WriteLine("Result = {0}", result);
+                    //int result = reader.ReadInt32();
+                   // Console.WriteLine("Result = {0}", result);
                 }
                 tcpClient.Close();
             }).Start();

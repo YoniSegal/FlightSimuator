@@ -27,6 +27,7 @@ namespace FlightSimulator.Views
         {
             InitializeComponent();
         }
+
         private void Setting_Click(object sender, RoutedEventArgs e)
         {
             Settings set = new Settings();
@@ -35,8 +36,10 @@ namespace FlightSimulator.Views
 
         private void Connect_Click(object sender, RoutedEventArgs e)
         {
-            FlightBoardViewModel flightBoardViewModel = new FlightBoardViewModel();
-            flightBoardViewModel.connect();
+
+                FlightBoardViewModel flightBoardViewModel = new FlightBoardViewModel();
+                flightBoardViewModel.connect();
+            
         }
     }
 }
