@@ -40,6 +40,7 @@ namespace FlightSimulator.Model
             server = ApplicationSettingsModel.Instance.FlightServerIP;
             tcpClient = new TcpClient(server, port);
             Console.WriteLine("Command channel: you are connected");
+
             isConnected = true;
             /*
             new Thread(() =>
@@ -65,16 +66,20 @@ namespace FlightSimulator.Model
 
         public void Send(string input)
         {
-            if (string.IsNullOrEmpty(input)) return; // in case where user pressed ok and text is empty
-            string[] commands = input.Split('\n');
-            foreach (string command in commands)
+            using (NetworkStream stream = tcpClient.GetStream())
             {
-                string tmp = command + "\r\n";
-                writer.Write(Encoding.ASCII.GetBytes(tmp));
-                Thread.Sleep(2000); // 2 seconds delay
+
+                if (string.IsNullOrEmpty(input)) return; // in case where user pressed ok and text is empty
+                string[] commands = input.Split('\n');
+                foreach (string command in commands)
+                {
+                    Byte[] data = Encoding.ASCII.GetBytes(command + "\r\n");
+                    stream.Write(data, 0, data.Length);
+
+                 Thread.Sleep(2000); // 2 seconds delay
+                }
             }
+
         }
-
-
     }
 }
