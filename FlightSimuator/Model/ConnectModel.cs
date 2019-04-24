@@ -20,7 +20,8 @@ namespace FlightSimulator.Model
         }
         public void connect()
         {
-            client.Connect_client();
+            try { client.Connect_client(); }
+            catch { Exception e; }
             server.connect_server();
             StartRead();
             //server.Read();
@@ -50,7 +51,7 @@ namespace FlightSimulator.Model
         {
             new Task(delegate ()
             {
-                while (server.isConnected)
+                while (true)
                 {
                     string[] args = server.Read();
                     Lon = Convert.ToDouble(args[0]);

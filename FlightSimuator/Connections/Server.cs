@@ -15,8 +15,8 @@ namespace FlightSimulator.Model
     {
         static Server instance = null;
         private string serverIp = "127.0.0.1";
-        private int serverPort;
-        Int32 port;
+        private int serverPort = 5400;
+        Int32 port=5400;
         IPAddress ip;
         TcpClient client;
         ClientHandler ch;
@@ -65,43 +65,8 @@ namespace FlightSimulator.Model
             listener.Start();
             Console.WriteLine("waiting for client connection...");
             Console.WriteLine("info channel: client connected");
-            Thread thread = new Thread(() => ServisClient());
-            thread.Start();
-
-/*
- *  
- * 
-            IPEndPoint ep = new IPEndPoint(IPAddress.Parse(serverIp), serverPort);
-            TcpListener listener = new TcpListener(ep);
-            Console.WriteLine("Waiting for client connections...");
-            listener.Start();
-
-            TcpClient client = listener.AcceptTcpClient();
-
-            Thread thread = new Thread(() => {
-                while (true)
-                {
-                    try
-                    {
-                        Console.WriteLine("Client connected");
-                        ch.HandleClient(client);
-                    }
-                    catch (SocketException)
-                    {
-                        break;
-                    }
-                }
-                Console.WriteLine("Server stopped");
-            });
-            thread.Start();
-        
-
-            //client = listener.AcceptTcpClient();
-            //Console.WriteLine("Client connected");
-            Task t = new Task(ServisClient);
-            t.Start();
-
-            listener.Stop();*/
+            //Thread thread = new Thread(() => ServisClient());
+            //thread.Start();
 
         }
 
@@ -109,8 +74,8 @@ namespace FlightSimulator.Model
         {
             if (!isConnected)
             {
-                isConnected = true;
                 client = listener.AcceptTcpClient();
+                isConnected = true;
                 reader = new BinaryReader(client.GetStream());
             }
             string input = ""; // input will be stored here
