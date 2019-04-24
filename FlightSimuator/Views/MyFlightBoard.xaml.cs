@@ -23,23 +23,23 @@ namespace FlightSimulator.Views
     /// </summary>
     public partial class MyFlightBoard : UserControl
     {
+        FlightBoardViewModel flightBoardViewModel;
+
         public MyFlightBoard()
         {
             InitializeComponent();
+            flightBoardViewModel = new FlightBoardViewModel();
         }
 
         private void Setting_Click(object sender, RoutedEventArgs e)
         {
-            Settings set = new Settings();
-            set.Show();
+
+            flightBoardViewModel.Settings_Click();
         }
 
         private void Connect_Click(object sender, RoutedEventArgs e)
         {
-
-                FlightBoardViewModel flightBoardViewModel = new FlightBoardViewModel();
-                flightBoardViewModel.connect();
-            
+            flightBoardViewModel.connect();            
         }
     }
 }

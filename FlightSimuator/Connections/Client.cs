@@ -12,11 +12,17 @@ namespace FlightSimulator.Model
 {
     class Client
     {
+        private TcpClient tcpClient; // client
+        Int32 port;
+        string server;
+        private BinaryWriter writer; // writer
         static Client instance = null;
         private string clientIp;
         public bool isConnected { get; set; } = false; // is the clinet connected?
 
         public string ClientIp { get; set; }
+
+
         public int ClientPort { get; set; }
         private Client() { }
         public static Client getInstance()
@@ -30,13 +36,12 @@ namespace FlightSimulator.Model
         }
         public void Connect_client()
         {
-
-            Int32 port = ApplicationSettingsModel.Instance.FlightCommandPort;
-            string server = ApplicationSettingsModel.Instance.FlightServerIP;
-            TcpClient tcpClient = new TcpClient(server, port);
+            port = ApplicationSettingsModel.Instance.FlightCommandPort;
+            server = ApplicationSettingsModel.Instance.FlightServerIP;
+            tcpClient = new TcpClient(server, port);
             Console.WriteLine("Command channel: you are connected");
             isConnected = true;
-            
+            /*
             new Thread(() =>
             {
                 using (NetworkStream stream = tcpClient.GetStream())
@@ -47,14 +52,29 @@ namespace FlightSimulator.Model
                     Console.WriteLine("Please enter a number: ");
                     int num = 5;
                     //int.Parse(Console.ReadLine());
-                    writer.Write(num);
+                    //writer.Write(num);
                     // Get result from server
                     //int result = reader.ReadInt32();
                    // Console.WriteLine("Result = {0}", result);
                 }
                 tcpClient.Close();
             }).Start();
-            
+            */
         }
+
+
+        public void Send(string input)
+        {
+            if (string.IsNullOrEmpty(input)) return; // in case where user pressed ok and text is empty
+            string[] commands = input.Split('\n');
+            foreach (string command in commands)
+            {
+                string tmp = command + "\r\n";
+                writer.Write(Encoding.ASCII.GetBytes(tmp));
+                Thread.Sleep(2000); // 2 seconds delay
+            }
+        }
+
+
     }
 }

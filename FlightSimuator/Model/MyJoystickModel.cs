@@ -3,22 +3,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FlightSimuator.Model
 {
-    class AutoPilotModel
+    class MyJoystickModel
     {
-        // send commands to the simulator
-        public void SendCommands(string input)
-        {            
+        public void Send(string command)
+        {
             if (Client.getInstance().isConnected)
             {
-                new Task(delegate ()
+                new Thread(delegate ()
                 {
-                    Client.getInstance().Send(input);
+                    Client.getInstance().Send(command);
                 }).Start();
-            } 
+            }
         }
     }
 }
