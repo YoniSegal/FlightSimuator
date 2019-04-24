@@ -58,10 +58,10 @@
                     </TransformGroup>
                 </TextBlock.LayoutTransform></TextBlock>
 
-            <TextBlock Text="{Binding ElementName=rudderSlider, StringFormat=N2, Path=Value}" Grid.Row="6" Grid.Column="5" FontSize="25" TextAlignment="Right"></TextBlock>
-            <TextBlock Text="{Binding ElementName=throttleSlider, StringFormat=N2, Path=Value}" Grid.Row="1" Grid.Column="1" FontSize="25" TextAlignment="Left"></TextBlock>
-            <TextBlock Text="{Binding ElementName=j,StringFormat=N2, Path=Aileron}" Grid.Row="0" Grid.Column="5" FontSize="25" TextAlignment="Right"></TextBlock>
-            <TextBlock Text="{Binding ElementName=j, StringFormat=N2,Path=Elevator}"  Grid.Row="1" Grid.Column="6" FontSize="25" TextAlignment="Left" > <TextBlock.LayoutTransform>
+            <TextBlock Text="{Binding ElementName=rudderSlider, StringFormat=N2, Path=Value}" Name="rudder" Grid.Row="6" Grid.Column="5" FontSize="25" TextAlignment="Right"></TextBlock>
+            <TextBlock Text="{Binding ElementName=throttleSlider, StringFormat=N2, Path=Value}" Name="throttle" Grid.Row="1" Grid.Column="1" FontSize="25" TextAlignment="Left"></TextBlock>
+            <TextBlock Text="{Binding ElementName=j,StringFormat=N2, Path=Aileron}" Grid.Row="0" Name="aileron" Grid.Column="5" FontSize="25" TextAlignment="Right"></TextBlock>
+            <TextBlock Text="{Binding ElementName=j, StringFormat=N2,Path=Elevator}"  Name="elevator" Grid.Row="1" Grid.Column="6" FontSize="25" TextAlignment="Left" > <TextBlock.LayoutTransform>
                     <TransformGroup>
                         <RotateTransform Angle="90"/>
                     </TransformGroup>
