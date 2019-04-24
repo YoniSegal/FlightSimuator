@@ -81,6 +81,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\ApplicationSettingsModel.cs" />
+    <Compile Include="Model\AutoPilotModel.cs" />
     <Compile Include="Model\Client.cs" />
     <Compile Include="Model\ClientHandler.cs" />
     <Compile Include="Model\CommandHandler.cs" />
