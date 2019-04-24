@@ -29,7 +29,7 @@
             <local:FlightBoard Grid.ColumnSpan="6" Grid.Column="0" Grid.RowSpan="6"  Grid.Row="1" Padding="50" ></local:FlightBoard>
             <Canvas TextBlock.FontSize="20">
                 <Button Name="connectBtn" Click="Connect_Click" Canvas.Left="120" Canvas.Top="10" Content="connect" Padding="5" FontSize="10" FontWeight="Bold" Background="White" BorderBrush="Black" />
-                <Button Name="settingBtn" Click="Setting_Click" Command="{Binding Setting_Click}" Canvas.Left="200" Canvas.Top="10" Content="setting" Padding="5" FontSize="10" FontWeight="Bold" Background="White" BorderBrush="Black" />
+                <Button Name="settingBtn" Click="Setting_Click" Canvas.Left="200" Canvas.Top="10" Content="setting" Padding="5" FontSize="10" FontWeight="Bold" Background="White" BorderBrush="Black" />
             </Canvas>
         </Grid>
     </Viewbox>

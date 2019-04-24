@@ -22,8 +22,15 @@
 
         </Grid.ColumnDefinitions>
 
-        <TextBox Name="commandPrompt" Grid.ColumnSpan="4" Grid.RowSpan="3" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
-        <Button Content="OK" Grid.Row="3" Grid.Column="1" FontWeight="Bold" FontSize="10" Grid.RowSpan="2"></Button>
-        <Button Content="Clear" Grid.Row="3" Grid.Column="2" FontWeight="Bold" FontSize="10" Grid.RowSpan="2"></Button>
+        <TextBox Name="commandPrompt"
+                 Grid.ColumnSpan="4"
+                 Grid.RowSpan="3"
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True"
+                 Text="{Binding Commands, UpdateSourceTrigger = PropertyChanged}"
+                 Background="{Binding Background, UpdateSourceTrigger = PropertyChanged}"
+                 ></TextBox>
+        <Button Content="OK" Command="{Binding OkCommand}" Grid.Row="3" Grid.Column="1" FontWeight="Bold" FontSize="10" Grid.RowSpan="2"></Button>
+        <Button Content="Clear" Command="{Binding ClearCommand}" Grid.Row="3" Grid.Column="2" FontWeight="Bold" FontSize="10" Grid.RowSpan="2"></Button>
     </Grid>
 </UserControl>
