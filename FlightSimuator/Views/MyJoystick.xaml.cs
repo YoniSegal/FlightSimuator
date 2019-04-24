@@ -24,18 +24,32 @@ namespace FlightSimulator.Views
     /// </summary>
     public partial class MyJoystick : INotifyPropertyChanged
     {
-        private JoystickHandler joystick;
+
+        
+
+        private JoystickViewModel joystickVM;
+        
         public MyJoystick()
         {
             DataContext = this;
             InitializeComponent();
-            joystick = new JoystickHandler();
+            joystickVM = new JoystickViewModel();
+
+            Console.WriteLine(rudderSlider.Value);
+            
+            rudder.DataContext = this;
+            elevator.DataContext = this;
+            throttle.DataContext = this;
+            aileron.DataContext = this;
+            joystickVM.BoundRudderValue = rudderSlider.Value;
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
+            Console.WriteLine("Something changed!");
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }

@@ -10,7 +10,7 @@ using FlightSimulator.Model.EventArgs;
 
 namespace FlightSimulator.ViewModels
 {
-    class JoystickHandler
+    class JoystickViewModel
     {
         private MyJoystickModel model = new MyJoystickModel();
 

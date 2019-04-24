@@ -1,4 +1,5 @@
 ﻿using FlightSimulator.Model.EventArgs;
+using FlightSimulator.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace FlightSimulator.Views
     /// </summary>
     public partial class Joystick : UserControl
     {
+
         /// <summary>Current Aileron</summary>
         public static readonly DependencyProperty AileronProperty =
             DependencyProperty.Register("Aileron", typeof(double), typeof(Joystick), null);
@@ -180,7 +182,7 @@ namespace FlightSimulator.Views
                 (!(Math.Abs(_prevAileron - Aileron) > AileronStep) && !(Math.Abs(_prevElevator - Elevator) > ElevatorStep)))
                 return;
 
-            // Moved?.Invoke(this, new VirtualJoystickEventArgs { Aileron = Aileron, Elevator = Elevator });
+            Moved?.Invoke(this, new VirtualJoystickEventArgs { Aileron = Aileron, Elevator = Elevator });
             VirtualJoystickEventArgs vJoystick = VirtualJoystickEventArgs.getInstance();
             _prevAileron = Aileron;
             _prevElevator = Elevator;
