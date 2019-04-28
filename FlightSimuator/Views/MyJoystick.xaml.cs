@@ -24,10 +24,9 @@ namespace FlightSimulator.Views
     /// </summary>
     public partial class MyJoystick : INotifyPropertyChanged
     {
-
+  
         
-
-        private JoystickViewModel joystickVM;
+       private JoystickViewModel joystickVM;
         
         public MyJoystick()
         {
