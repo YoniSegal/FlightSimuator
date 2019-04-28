@@ -1,20 +1,11 @@
 ﻿using FlightSimulator.Model.EventArgs;
 using FlightSimulator.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 
 namespace FlightSimulator.Views
@@ -166,9 +157,16 @@ namespace FlightSimulator.Views
             knobPosition.X = deltaPos.X;
             knobPosition.Y = deltaPos.Y;
 
+            if (Released != null)
+            {
+                centerKnob_Completed(sender, e);
+            }
+
             if (Moved == null ||
                 (!(Math.Abs(_prevAileron - Aileron) > AileronStep) && !(Math.Abs(_prevElevator - Elevator) > ElevatorStep)))
             {
+                Console.WriteLine("Moved is null");
+
                 return;
             }
             Moved?.Invoke(this, new VirtualJoystickEventArgs { Aileron = Aileron, Elevator = Elevator });
@@ -177,10 +175,9 @@ namespace FlightSimulator.Views
             VirtualJoystickEventArgs vJoystick = VirtualJoystickEventArgs.getInstance();
             _prevAileron = Aileron;
             _prevElevator = Elevator;
-            
-            // return joystick to zero 
-            joystickViewModel.BoundAilronValue = 0;
-            joystickViewModel.BoundElevatorValue = 0;
+
+            Console.WriteLine("viewmodel reached: Aileron is " + Aileron);
+            Console.WriteLine("viewmodel reached: Elevator is " + Elevator);
         }
 
         private void Knob_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -192,8 +189,9 @@ namespace FlightSimulator.Views
         private void centerKnob_Completed(object sender, EventArgs e)
         {
             Aileron = Elevator = _prevAileron = _prevElevator = 0;
+            joystickViewModel.BoundAilronValue = Aileron;
+            joystickViewModel.BoundElevatorValue = Elevator;
             Released?.Invoke(this);
         }
-
     }
 }
