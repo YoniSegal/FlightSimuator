@@ -23,7 +23,7 @@ namespace FlightSimulator.ViewModels
         // always return the same object
         private VirtualJoystickEventArgs vJoystick = VirtualJoystickEventArgs.getInstance();
        // property of rudder value
-        public double BoundRudderValue {
+        public double Rudder {
             set
             {
                 vJoystick.Rudder = value;
@@ -35,8 +35,8 @@ namespace FlightSimulator.ViewModels
                 catch(Exception e) { }
             }
         }
-        // property of throttel value
-        public double BoundThrottleValue {
+        // property of throtte value
+        public double Throttle {
             set
             {
                 vJoystick.Throttle = value;
