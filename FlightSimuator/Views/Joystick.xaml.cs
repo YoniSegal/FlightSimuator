@@ -185,9 +185,7 @@ namespace FlightSimulator.Views
 
             Console.WriteLine("viewmodel reached: Aileron is " + Aileron);
             Console.WriteLine("viewmodel reached: Elevator is " + Elevator);
-
-
-
+            
         }
 
         private void Knob_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
