@@ -30,19 +30,8 @@ namespace FlightSimulator.Views
         
         public MyJoystick()
         {
-            DataContext = this;
             InitializeComponent();
-            joystickVM = new JoystickViewModel();
-
-            Console.WriteLine(rudderSlider.Value);
-            /*
-            rudder.DataContext = this;
-            elevator.DataContext = this;
-            throttle.DataContext = this;
-            aileron.DataContext = this;
-            joystickVM.BoundRudderValue = rudderSlider.Value;
-            */
-
+            DataContext = new JoystickViewModel();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
