@@ -15,6 +15,20 @@ namespace FlightSimulator.ViewModels
     public class FlightBoardViewModel : BaseNotify
     {
 
+        #region Singleton
+        private static FlightBoardViewModel m_Instance = null;
+        public static FlightBoardViewModel Instance
+        {
+            get
+            {
+                if (m_Instance == null)
+                {
+                    m_Instance = new FlightBoardViewModel();
+                }
+                return m_Instance;
+            }
+        }
+        #endregion
 
         private ICommand settingsCommand; // Settings command for settings button
         public ICommand SettingsCommand { get { return settingsCommand ?? (settingsCommand = new CommandHandler(() => Settings_Click())); } }
@@ -27,14 +41,20 @@ namespace FlightSimulator.ViewModels
 
         private ICommand connectsCommand; // Settings command for settings button
         public ICommand ConnectsCommand { get { return connectsCommand ?? (connectsCommand = new CommandHandler(() => connect())); } }
+        private double lon;
         public double Lon
         {
-            get; set;
+            get { return lon; } set { lon = value;
+                NotifyPropertyChanged("Lon");
+            }
         }
-
+        private double lat;
         public double Lat
         {
-            get; set;
+            get { return lat; }
+            set { lat = value;
+                NotifyPropertyChanged("Lat");
+            }
         }
 
         
