@@ -57,7 +57,6 @@ namespace FlightSimulator.Model
 
         public void connect_server()
         {
-
             port = ApplicationSettingsModel.Instance.FlightInfoPort;
             ip = IPAddress.Parse(ApplicationSettingsModel.Instance.FlightServerIP);
             IPEndPoint ep = new IPEndPoint(ip, port);

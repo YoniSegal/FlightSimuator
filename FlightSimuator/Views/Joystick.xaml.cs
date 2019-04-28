@@ -166,6 +166,11 @@ namespace FlightSimulator.Views
             knobPosition.X = deltaPos.X;
             knobPosition.Y = deltaPos.Y;
 
+            if (Released != null)
+            {
+                centerKnob_Completed(sender, e);
+            }
+
             if (Moved == null ||
                 (!(Math.Abs(_prevAileron - Aileron) > AileronStep) && !(Math.Abs(_prevElevator - Elevator) > ElevatorStep)))
             {
@@ -182,10 +187,6 @@ namespace FlightSimulator.Views
 
             Console.WriteLine("viewmodel reached: Aileron is " + Aileron);
             Console.WriteLine("viewmodel reached: Elevator is " + Elevator);
-
-            // return joystick to zero 
-            joystickViewModel.BoundAilronValue = 0;
-            joystickViewModel.BoundElevatorValue = 0;
         }
 
         private void Knob_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -197,8 +198,9 @@ namespace FlightSimulator.Views
         private void centerKnob_Completed(object sender, EventArgs e)
         {
             Aileron = Elevator = _prevAileron = _prevElevator = 0;
+            joystickViewModel.BoundAilronValue = Aileron;
+            joystickViewModel.BoundElevatorValue = Elevator;
             Released?.Invoke(this);
         }
-
     }
 }
