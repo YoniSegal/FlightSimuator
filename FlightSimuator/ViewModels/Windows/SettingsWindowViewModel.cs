@@ -49,8 +49,6 @@ namespace FlightSimulator.ViewModels.Windows
             }
         }
 
-
-
         public void SaveSettings()
         {
             model.SaveSettings();
@@ -86,10 +84,12 @@ namespace FlightSimulator.ViewModels.Windows
                 return _cancelCommand ?? (_cancelCommand = new CommandHandler(() => OnCancel()));
             }
         }
+
         private void OnCancel()
         {
             model.ReloadSettings();
         }
+
         #endregion
         #endregion
     }

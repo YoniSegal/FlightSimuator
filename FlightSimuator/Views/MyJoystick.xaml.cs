@@ -38,7 +38,6 @@ namespace FlightSimulator.Views
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            Console.WriteLine("Something changed!");
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }

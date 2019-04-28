@@ -19,23 +19,23 @@ namespace FlightSimulator.Model
             client = Client.getInstance();
             server = Server.getInstance();
         }
+
         public void connect()
         {
-            //client.Connect_client();
             server.connect_server();
             StartRead();
-            //server.Read();
         }
+
         private double lat;
         public double Lat
         {
             get { return lat; }
-
             set
             {
                 lat = value;
             }
         }
+
         private double lon;
         public double Lon
         {
@@ -46,6 +46,7 @@ namespace FlightSimulator.Model
                 lon = value;
             }
         }
+
         // read input in a new thread, notify view model about the new data
         void StartRead()
         {
@@ -56,8 +57,6 @@ namespace FlightSimulator.Model
                     string[] args = server.Read();
                     FlightBoardViewModel.Instance.Lon = Convert.ToDouble(args[0]);
                     FlightBoardViewModel.Instance.Lat = Convert.ToDouble(args[1]);
-                    Console.Write("Lon: " + Lon + "\t");
-                    Console.WriteLine("Lat: " + Lat);
                 }
             }).Start();
         }

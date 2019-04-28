@@ -22,7 +22,6 @@ namespace FlightSimulator
         public MainWindow()
         {
             InitializeComponent();
-            Console.ReadLine();
         }
     }
 }

@@ -17,9 +17,12 @@ namespace FlightSimulator.ViewModels
 
         private AutoPilotModel model = new AutoPilotModel();
 
-        private Brush background = Brushes.White; // Background color
+        // Background color
+        private Brush background = Brushes.White;
+        
+        // Commands to be sent
+        private string commands;
 
-        private string commands; // Commands to be sent
         public string Commands
         {
             get { return commands; }
@@ -31,6 +34,7 @@ namespace FlightSimulator.ViewModels
                 else if (string.IsNullOrEmpty(Commands)) Background = Brushes.White; // if text is not empty
             }
         }
+
         public Brush Background
         {
             get
@@ -68,7 +72,6 @@ namespace FlightSimulator.ViewModels
 
         #endregion
 
-
         #region clearCommand
         // Clear command for clear button
         private ICommand clearCommand; 
@@ -91,6 +94,5 @@ namespace FlightSimulator.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
-
     }
 }
