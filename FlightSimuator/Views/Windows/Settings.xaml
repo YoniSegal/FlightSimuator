@@ -27,11 +27,11 @@
             </Style>
         </Grid.Resources>
         <TextBlock>Flight Server IP:</TextBlock>
-        <TextBox x:Name="serverIP" Grid.Column="2" Text="{Binding Path=FlightServerIP}"></TextBox>
+        <TextBox x:Name="serverIP" FontSize="10" Grid.Column="2" Text="{Binding Path=FlightServerIP}"></TextBox>
         <TextBlock Grid.Row="1">Flight Info Port:</TextBlock>
-        <TextBox x:Name="infoPort" Grid.Row="1" Grid.Column="2" Text="{Binding Path=FlightInfoPort}"></TextBox>
+        <TextBox x:Name="infoPort" FontSize="10" Grid.Row="1" Grid.Column="2" Text="{Binding Path=FlightInfoPort}"></TextBox>
         <TextBlock Grid.Row="2">Flight Command Port:</TextBlock>
-        <TextBox x:Name="commandPort" Grid.Row="2" Grid.Column="2" Text="{Binding Path=FlightCommandPort}"></TextBox>
+        <TextBox x:Name="commandPort"  FontSize="10" Grid.Row="2" Grid.Column="2" Text="{Binding Path=FlightCommandPort}"></TextBox>
         <WrapPanel Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button x:Name="ok" Click="OkCommand" Margin="5"
         Padding="5">Ok</Button>

@@ -35,12 +35,13 @@ namespace FlightSimulator.Views
             joystickVM = new JoystickViewModel();
 
             Console.WriteLine(rudderSlider.Value);
-            
+            /*
             rudder.DataContext = this;
             elevator.DataContext = this;
             throttle.DataContext = this;
             aileron.DataContext = this;
             joystickVM.BoundRudderValue = rudderSlider.Value;
+            */
 
         }
 

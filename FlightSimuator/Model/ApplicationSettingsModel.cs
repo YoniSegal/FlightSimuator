@@ -15,7 +15,7 @@ namespace FlightSimulator.Model
         {
             get
             {
-                if(m_Instance == null)
+                if (m_Instance == null)
                 {
                     m_Instance = new ApplicationSettingsModel();
                 }
@@ -23,7 +23,6 @@ namespace FlightSimulator.Model
             }
         }
         #endregion
-
         public string FlightServerIP
         {
             get { return Properties.Settings.Default.FlightServerIP; }

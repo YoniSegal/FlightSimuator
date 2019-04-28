@@ -159,13 +159,10 @@ namespace FlightSimulator.Views
             Elevator = Math.Round(-2.1 * deltaPos.Y / canvasHeight, 2);
             if (Elevator > 1) Elevator = 1;
             else if (Elevator < -1) Elevator = 1;
-
-
+            
             joystickViewModel.BoundAilronValue = Aileron;
             joystickViewModel.BoundElevatorValue = Elevator;
            
-
-
             knobPosition.X = deltaPos.X;
             knobPosition.Y = deltaPos.Y;
 
