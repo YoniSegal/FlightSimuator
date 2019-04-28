@@ -83,12 +83,9 @@
     <Compile Include="Model\ApplicationSettingsModel.cs" />
     <Compile Include="Model\AutoPilotModel.cs" />
     <Compile Include="Connections\Client.cs" />
-    <Compile Include="Model\ClientHandler.cs" />
     <Compile Include="Model\CommandHandler.cs" />
-    <Compile Include="Model\ConnectModel.cs" />
-    <Compile Include="Model\Data.cs" />
-    <Compile Include="Model\EventArgs\VirtualJoystickEventArgs.cs" />
     <Compile Include="Model\FlightBoardModel.cs" />
+    <Compile Include="Model\EventArgs\VirtualJoystickEventArgs.cs" />
     <Compile Include="Model\Interface\ISettingsModel.cs" />
     <Compile Include="Connections\Server.cs" />
     <Compile Include="Model\MyJoystickModel.cs" />

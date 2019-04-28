@@ -19,7 +19,6 @@ namespace FlightSimulator.Model
         Int32 port=5400;
         IPAddress ip;
         TcpClient client;
-        ClientHandler ch;
         public bool isConnected = false;
         private BinaryReader reader;
         private TcpListener listener;
@@ -50,11 +49,6 @@ namespace FlightSimulator.Model
             else return instance;
         }
 
-        public void listenAndRead()
-        {
-
-        }
-
         public void connect_server()
         {
             port = ApplicationSettingsModel.Instance.FlightInfoPort;
@@ -62,11 +56,6 @@ namespace FlightSimulator.Model
             IPEndPoint ep = new IPEndPoint(ip, port);
             listener = new TcpListener(ep);
             listener.Start();
-            Console.WriteLine("waiting for client connection...");
-            Console.WriteLine("info channel: client connected");
-            //Thread thread = new Thread(() => ServisClient());
-            //thread.Start();
-
         }
 
         public string[] Read()
@@ -84,31 +73,6 @@ namespace FlightSimulator.Model
             string[] ret = { param[0], param[1] }; // lon nad lat only
             return ret;
 
-        }
-
-        void ServisClient()
-        {
-            try
-            {
-                while (true)
-                {
-                    using (NetworkStream stream = client.GetStream())
-                    using (BinaryReader reader = new BinaryReader(stream))
-                    using (BinaryWriter writer = new BinaryWriter(stream))
-                    {
-                        Console.WriteLine("Waiting for a number");
-                        string num = reader.ReadString();
-                        Console.WriteLine("Number accepted");
-                        writer.Write(num);
-                        writer.Flush();
-                    }
-                    client.Close();
-                }
-            }
-            catch
-            {
-                Console.WriteLine("Disconnected");
-            }
         }
     }
 }

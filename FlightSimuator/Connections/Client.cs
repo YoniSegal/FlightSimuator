@@ -15,7 +15,6 @@ namespace FlightSimulator.Model
         private TcpClient tcpClient; // client
         Int32 port;
         string server;
-        //private BinaryWriter writer = new BinaryWriter(); // writer
         static Client instance = null;
         private string clientIp;
         public bool isConnected { get; set; } = false; // is the clinet connected?
@@ -39,28 +38,9 @@ namespace FlightSimulator.Model
             port = ApplicationSettingsModel.Instance.FlightCommandPort;
             server = ApplicationSettingsModel.Instance.FlightServerIP;
             tcpClient = new TcpClient(server, port);
-            Console.WriteLine("Command channel: you are connected");
 
             isConnected = true;
-            /*
-            new Thread(() =>
-            {
-                using (NetworkStream stream = tcpClient.GetStream())
-                using (BinaryReader reader = new BinaryReader(stream))
-                using (BinaryWriter writer = new BinaryWriter(stream))
-                {
-                    // Send data to server
-                    Console.WriteLine("Please enter a number: ");
-                    int num = 5;
-                    //int.Parse(Console.ReadLine());
-                    //writer.Write(num);
-                    // Get result from server
-                    //int result = reader.ReadInt32();
-                   // Console.WriteLine("Result = {0}", result);
-                }
-                tcpClient.Close();
-            }).Start();
-            */
+
         }
 
 
@@ -74,11 +54,6 @@ namespace FlightSimulator.Model
                 string[] commands = input.Split('\n');
                 foreach (string command in commands)
                 {
-                    //Console.WriteLine("Command is: " + command);
-                    //byte[] data = Encoding.ASCII.GetBytes(command + "\r\n");
-                    //Console.WriteLine("Data is: " + data.ToString());
-                    //stream.Write(data, 0, data.Length);
-
                     string tmp = command + "\r\n";
                     writer.Write(Encoding.ASCII.GetBytes(tmp));
 

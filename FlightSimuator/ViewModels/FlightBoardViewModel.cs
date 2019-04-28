@@ -59,9 +59,9 @@ namespace FlightSimulator.ViewModels
 
         
         public void connect()
-        {                       
-            ConnectModel c = new ConnectModel();
-            c.connect();
+        {
+            FlightBoardModel fbm = new FlightBoardModel();
+            fbm.connect();
         }
         
     }
