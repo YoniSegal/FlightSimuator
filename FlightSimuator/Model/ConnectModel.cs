@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlightSimulator.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -53,8 +54,8 @@ namespace FlightSimulator.Model
                 while (true)
                 {
                     string[] args = server.Read();
-                    Lon = Convert.ToDouble(args[0]);
-                    Lat = Convert.ToDouble(args[1]);
+                    FlightBoardViewModel.Instance.Lon = Convert.ToDouble(args[0]);
+                    FlightBoardViewModel.Instance.Lat = Convert.ToDouble(args[1]);
                     Console.Write("Lon: " + Lon + "\t");
                     Console.WriteLine("Lat: " + Lat);
                 }
