@@ -24,6 +24,7 @@ namespace FlightSimulator.Views
     /// </summary>
     public partial class Joystick : UserControl
     {
+        JoystickViewModel joystickViewModel = new JoystickViewModel();
 
         /// <summary>Current Aileron</summary>
         public static readonly DependencyProperty AileronProperty =
@@ -146,46 +147,46 @@ namespace FlightSimulator.Views
 
             Point deltaPos = new Point(newPos.X - _startPos.X, newPos.Y - _startPos.Y);
 
+
             double distance = Math.Round(Math.Sqrt(deltaPos.X * deltaPos.X + deltaPos.Y * deltaPos.Y));
             if (distance >= canvasWidth / 2 || distance >= canvasHeight / 2)
             {
                 return;
             }
+            Aileron = Math.Round(2.1 * deltaPos.X / canvasWidth, 2);
+            if (Aileron > 1) Aileron = 1;
+            else if (Aileron < -1) Aileron = -1;
+            Elevator = Math.Round(-2.1 * deltaPos.Y / canvasHeight, 2);
+            if (Elevator > 1) Elevator = 1;
+            else if (Elevator < -1) Elevator = 1;
 
-            Aileron = 2 * deltaPos.X;
-            if (Aileron >= 1)
-            {
-                Aileron = 1;
-            }
-            else
-            {
-                Aileron = -1;
-            }
 
-            Elevator = 2 * deltaPos.Y;
-            if (Elevator >= 1)
-            {
-                Elevator = 1;
-            }
-            else
-            {
-                Elevator = -1;
-            }
+            joystickViewModel.BoundAilronValue = Aileron;
+            joystickViewModel.BoundElevatorValue = Elevator;
+           
 
-            Aileron = -deltaPos.Y;
-            Elevator = deltaPos.X;
 
             knobPosition.X = deltaPos.X;
             knobPosition.Y = deltaPos.Y;
 
             if (Moved == null ||
                 (!(Math.Abs(_prevAileron - Aileron) > AileronStep) && !(Math.Abs(_prevElevator - Elevator) > ElevatorStep)))
-                return;
+            {
+                Console.WriteLine("Moved is null");
 
+                return;
+            }
             Moved?.Invoke(this, new VirtualJoystickEventArgs { Aileron = Aileron, Elevator = Elevator });
+
+
             VirtualJoystickEventArgs vJoystick = VirtualJoystickEventArgs.getInstance();
             _prevAileron = Aileron;
             _prevElevator = Elevator;
+
+            Console.WriteLine("viewmodel reached: Aileron is " + Aileron);
+            Console.WriteLine("viewmodel reached: Elevator is " + Elevator);
+
+
 
         }
 

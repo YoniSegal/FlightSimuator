@@ -15,7 +15,7 @@ namespace FlightSimulator.Model
         private TcpClient tcpClient; // client
         Int32 port;
         string server;
-        private BinaryWriter writer; // writer
+        //private BinaryWriter writer = new BinaryWriter(); // writer
         static Client instance = null;
         private string clientIp;
         public bool isConnected { get; set; } = false; // is the clinet connected?
@@ -67,19 +67,24 @@ namespace FlightSimulator.Model
         public void Send(string input)
         {
             using (NetworkStream stream = tcpClient.GetStream())
+            using (BinaryWriter writer = new BinaryWriter(stream))
             {
 
                 if (string.IsNullOrEmpty(input)) return; // in case where user pressed ok and text is empty
                 string[] commands = input.Split('\n');
                 foreach (string command in commands)
                 {
-                    Byte[] data = Encoding.ASCII.GetBytes(command + "\r\n");
-                    stream.Write(data, 0, data.Length);
+                    //Console.WriteLine("Command is: " + command);
+                    //byte[] data = Encoding.ASCII.GetBytes(command + "\r\n");
+                    //Console.WriteLine("Data is: " + data.ToString());
+                    //stream.Write(data, 0, data.Length);
 
-                 Thread.Sleep(2000); // 2 seconds delay
+                    string tmp = command + "\r\n";
+                    writer.Write(Encoding.ASCII.GetBytes(tmp));
+
+                    Thread.Sleep(2000); // 2 seconds delay
                 }
             }
-
         }
     }
 }

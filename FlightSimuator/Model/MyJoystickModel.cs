@@ -10,9 +10,13 @@ namespace FlightSimuator.Model
 {
     class MyJoystickModel
     {
+
+        private Client client = Client.getInstance();
+
+        public Client Client { get; }
+
         public void Send(string command)
         {
-            Client client = Client.getInstance();
             client.Connect_client();
             if (Client.getInstance().isConnected)
             {
