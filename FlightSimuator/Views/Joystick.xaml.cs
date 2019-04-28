@@ -165,12 +165,15 @@ namespace FlightSimulator.Views
             joystickViewModel.BoundElevatorValue = Elevator;
            
 
+
             knobPosition.X = deltaPos.X;
             knobPosition.Y = deltaPos.Y;
 
             if (Moved == null ||
                 (!(Math.Abs(_prevAileron - Aileron) > AileronStep) && !(Math.Abs(_prevElevator - Elevator) > ElevatorStep)))
             {
+                Console.WriteLine("Moved is null");
+
                 return;
             }
             Moved?.Invoke(this, new VirtualJoystickEventArgs { Aileron = Aileron, Elevator = Elevator });
@@ -179,6 +182,12 @@ namespace FlightSimulator.Views
             VirtualJoystickEventArgs vJoystick = VirtualJoystickEventArgs.getInstance();
             _prevAileron = Aileron;
             _prevElevator = Elevator;
+
+            Console.WriteLine("viewmodel reached: Aileron is " + Aileron);
+            Console.WriteLine("viewmodel reached: Elevator is " + Elevator);
+
+
+
         }
 
         private void Knob_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
