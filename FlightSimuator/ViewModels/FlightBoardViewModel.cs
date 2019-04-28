@@ -14,7 +14,6 @@ namespace FlightSimulator.ViewModels
 {
     public class FlightBoardViewModel : BaseNotify
     {
-
         #region Singleton
         private static FlightBoardViewModel m_Instance = null;
         public static FlightBoardViewModel Instance
@@ -29,8 +28,8 @@ namespace FlightSimulator.ViewModels
             }
         }
         #endregion
-
-        private ICommand settingsCommand; // Settings command for settings button
+        // Settings command for settings button
+        private ICommand settingsCommand; 
         public ICommand SettingsCommand { get { return settingsCommand ?? (settingsCommand = new CommandHandler(() => Settings_Click())); } }
 
         public void Settings_Click()
@@ -39,8 +38,10 @@ namespace FlightSimulator.ViewModels
             set.Show();
         }
 
-        private ICommand connectsCommand; // Settings command for settings button
+        // Settings command for settings button
+        private ICommand connectsCommand; 
         public ICommand ConnectsCommand { get { return connectsCommand ?? (connectsCommand = new CommandHandler(() => connect())); } }
+
         private double lon;
         public double Lon
         {
@@ -48,6 +49,7 @@ namespace FlightSimulator.ViewModels
                 NotifyPropertyChanged("Lon");
             }
         }
+
         private double lat;
         public double Lat
         {
@@ -56,13 +58,11 @@ namespace FlightSimulator.ViewModels
                 NotifyPropertyChanged("Lat");
             }
         }
-
-        
+                
         public void connect()
         {
             FlightBoardModel fbm = new FlightBoardModel();
             fbm.connect();
         }
-        
     }
 }

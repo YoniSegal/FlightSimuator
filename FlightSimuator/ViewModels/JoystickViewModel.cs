@@ -22,6 +22,7 @@ namespace FlightSimulator.ViewModels
 
         // always return the same object
         private VirtualJoystickEventArgs vJoystick = VirtualJoystickEventArgs.getInstance();
+
        // property of rudder value
         public double Rudder {
             set
@@ -29,12 +30,12 @@ namespace FlightSimulator.ViewModels
                 vJoystick.Rudder = value;
                 try
                 {
-                    Console.WriteLine("rudder accessed");
-                    model.Send("set" + rudderePath + Convert.ToString(value));
+                   model.Send("set" + rudderePath + Convert.ToString(value));
                 }
                 catch(Exception e) { }
             }
         }
+
         // property of throtte value
         public double Throttle {
             set
@@ -42,12 +43,12 @@ namespace FlightSimulator.ViewModels
                 vJoystick.Throttle = value;
                 try
                 {
-                    Console.WriteLine("throttle is " + value);
                     model.Send("set" + throttlePath + Convert.ToString(value));
                 }
                 catch(Exception e) { }
             }
         }
+
         // property of Ailron value
         public double BoundAilronValue
         {
@@ -55,12 +56,12 @@ namespace FlightSimulator.ViewModels
             {
                 try
                 {
-                    Console.WriteLine("aileron is:" + value);
-                    model.Send("set" + aileronPath + Convert.ToString(value));
+                   model.Send("set" + aileronPath + Convert.ToString(value));
                 }
                 catch (Exception e) { }
             }
         }
+
         // property of Elevator value
         public double BoundElevatorValue
         {
@@ -68,8 +69,7 @@ namespace FlightSimulator.ViewModels
             {
                 try
                 {
-                    Console.WriteLine("elevator accessed");
-                    model.Send("set" + elevatorPath + Convert.ToString(value));
+                   model.Send("set" + elevatorPath + Convert.ToString(value));
                 }
                 catch (Exception e) { }
             }
